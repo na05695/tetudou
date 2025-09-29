@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>景明鉄道ワールド - 鉄道ファンのコミュニティ</title>
+    <!-- ▼ サイトアイコン -->
+    <link rel="icon" href="favicon.png" type="image/png">
+
     <style>
         /* 全体のスタイル */
         * {
@@ -229,7 +232,10 @@
     </div>
     
     <footer>
-        <p>&copy; 2023 景明鉄道ワールド - すべての鉄道ファンに捧ぐ</p>
+        <p>&copy; <span id="year"></span> 景明鉄道ワールド</p>
     </footer>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
