@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>景明鉄道ワールド - 鉄道ファンのコミュニティ</title>
+    <style>
+        /* 全体のスタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'メイリオ', 'Meiryo', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ヘッダー部分 */
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        
+        /* メインコンテンツ */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .description {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .discord-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        h2 {
+            color: #1a2a6c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdbb2d;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .railway-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .railway-type {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            border-left: 4px solid #1a2a6c;
+            transition: transform 0.3s;
+        }
+        
+        .railway-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .discord-link {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(88, 101, 242, 0.3);
+        }
+        
+        .discord-link:hover {
+            background: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(88, 101, 242, 0.4);
+        }
+        
+        .discord-widget {
+            margin-top: 30px;
+        }
+        
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>景明鉄道ワールド</h1>
+            <p class="subtitle">新幹線・地下鉄・中央線・在来線の鉄道コミュニティ</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <section class="description">
+                <h2>景明鉄道ワールドについて</h2>
+                <p>景明鉄道ワールドは、鉄道ファンのためのコミュニティです。新幹線、地下鉄、中央線、在来線など、さまざまな鉄道に関する情報や話題を共有しています。</p>
+                
+                <p>まだ始めたばかりであまりできていないので、ご協力いただける方を募集しています。一緒に鉄道の魅力を発信し、充実したコミュニティを作り上げましょう！</p>
+                
+                <div class="railway-types">
+                    <div class="railway-type">
+                        <h3>新幹線</h3>
+                        <p>高速鉄道の魅力</p>
+                    </div>
+                    <div class="railway-type">
+                        <h3>地下鉄</h3>
+                        <p>都市の交通網</p>
+                    </div>
+                    <div class="railway-type">
+                        <h3>中央線</h3>
+                        <p>主要路線情報</p>
+                    </div>
+                    <div class="railway-type">
+                        <h3>在来線</h3>
+                        <p>地域の鉄道</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="discord-section">
+                <h2>Discordコミュニティに参加</h2>
+                <p>景明鉄道ワールドのDiscordコミュニティでは、鉄道に関する情報交換や雑談を楽しめます。鉄道ファンなら入っていて損はないはず！</p>
+                
+                <a href="https://discord.gg/EUbxuMKw" class="discord-link" target="_blank">Discordに参加する</a>
+                
+                <p>ブラウザで上記リンクを検索・入力してお入りください。</p>
+                
+                <div class="discord-widget">
+                    <iframe src="https://discord.com/widget?id=1421466684430090242&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 景明鉄道ワールド - すべての鉄道ファンに捧ぐ</p>
+    </footer>
+</body>
+</html>
