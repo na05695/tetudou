@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>景明鉄道ワールド - 鉄道ファンのコミュニティ</title>
- <link rel="icon" href="icon.png" type="image/png">
+    <link rel="icon" href="icon.png" type="image/png">
 
     <style>
         @font-face {
@@ -12,11 +12,7 @@
             src: url('keifont.ttf') format('truetype');
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'KeifontM', sans-serif;
@@ -25,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* ヘッダー */
         header {
             width: 100%;
             height: 100vh;
@@ -37,132 +32,52 @@
             background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
         }
 
-        header::before {
+        header::before, header::after {
             content: '';
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(253, 187, 45, 0.15) 0%, transparent 70%);
-            top: -300px;
-            left: -300px;
+            border-radius: 50%;
             animation: float 8s ease-in-out infinite;
         }
 
+        header::before {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(253,187,45,0.15) 0%, transparent 70%);
+            top: -300px; left: -300px;
+        }
+
         header::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, transparent 70%);
-            bottom: -200px;
-            right: -200px;
-            animation: float 10s ease-in-out infinite reverse;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(88,101,242,0.1) 0%, transparent 70%);
+            bottom: -200px; right: -200px;
+            animation-direction: reverse;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
+            0%,100% { transform: translate(0,0); }
+            50% { transform: translate(50px,50px); }
         }
 
-        .header-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-        }
-
+        .header-content { position: relative; z-index: 2; text-align: center; max-width: 800px; }
         h1 {
             font-size: 5rem;
-            font-weight: 900;
-            margin-bottom: 30px;
             background: linear-gradient(135deg, #fdbb2d, #b21f1f, #5865F2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             letter-spacing: 3px;
-            text-shadow: 0 0 40px rgba(253, 187, 45, 0.3);
-            line-height: 1.2;
+            text-shadow: 0 0 40px rgba(253,187,45,0.3);
         }
+        .subtitle { font-size: 1.8rem; color: #aaa; margin-bottom: 50px; }
 
-        .subtitle {
-            font-size: 1.8rem;
-            color: #aaa;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 50px;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 80px 40px; }
+        .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
 
-        /* コンテナ */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 40px;
-        }
-
-        /* メインコンテンツ */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-top: 60px;
-        }
-
-        .description {
+        .description, .discord-section {
             padding: 50px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(253, 187, 45, 0.2);
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .description::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(253, 187, 45, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .description:hover {
-            border-color: rgba(253, 187, 45, 0.5);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(253, 187, 45, 0.2);
-        }
-
-        .description:hover::before {
-            left: 100%;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            color: #fdbb2d;
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #fdbb2d, transparent);
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #d0d0d0;
-            margin-bottom: 25px;
+            border: 1px solid rgba(253,187,45,0.2);
+            transition: 0.5s;
         }
 
         .railway-types {
@@ -174,193 +89,75 @@
 
         .railway-type {
             padding: 25px;
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(178, 31, 31, 0.1));
-            border: 1px solid rgba(253, 187, 45, 0.3);
             border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .railway-type::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(253, 187, 45, 0.1);
-            transition: left 0.5s;
+            cursor: pointer;
+            background: linear-gradient(135deg, rgba(88,101,242,0.1), rgba(178,31,31,0.1));
+            border: 1px solid rgba(253,187,45,0.3);
+            transition: 0.4s;
         }
 
         .railway-type:hover {
             transform: translateY(-8px) scale(1.05);
-            border-color: rgba(253, 187, 45, 0.8);
-            box-shadow: 0 15px 40px rgba(253, 187, 45, 0.25);
+            border-color: rgba(253,187,45,0.8);
+            box-shadow: 0 15px 40px rgba(253,187,45,0.25);
         }
 
-        .railway-type:hover::before {
-            left: 100%;
-        }
+        .railway-type h3 { color: #fdbb2d; font-size: 1.4rem; margin-bottom: 10px; }
+        .railway-type p { color: #999; font-size: 0.95rem; }
 
-        .railway-type h3 {
-            font-size: 1.4rem;
-            color: #fdbb2d;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .railway-type p {
-            font-size: 0.95rem;
-            color: #999;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Discordセクション */
-        .discord-section {
-            padding: 50px;
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.08), rgba(178, 31, 31, 0.08));
-            border: 1px solid rgba(88, 101, 242, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .discord-section::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .discord-section:hover {
-            border-color: rgba(88, 101, 242, 0.6);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(88, 101, 242, 0.2);
-        }
-
-        .discord-link {
-            display: inline-block;
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            margin: 30px 0;
-            letter-spacing: 1px;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .discord-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: left 0.5s;
-        }
-
-        .discord-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.5);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .discord-link:hover::before {
-            left: 100%;
-        }
-
-        .discord-widget {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            filter: brightness(0.85) contrast(1.1);
-        }
-
-        /* フッター */
         footer {
             text-align: center;
             padding: 50px 40px;
-            background: linear-gradient(135deg, rgba(26, 42, 108, 0.5), rgba(15, 15, 30, 0.8));
-            border-top: 1px solid rgba(253, 187, 45, 0.2);
+            background: linear-gradient(135deg, rgba(26,42,108,0.5), rgba(15,15,30,0.8));
+            border-top: 1px solid rgba(253,187,45,0.2);
             color: #888;
-            font-size: 1rem;
-            letter-spacing: 1px;
             margin-top: 80px;
         }
 
-        /* レスポンシブ */
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+        /* === 画像モーダル === */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-            h1 {
-                font-size: 3.5rem;
-            }
+        .image-modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(253,187,45,0.3);
+        }
 
-            .subtitle {
-                font-size: 1.4rem;
-            }
+        .close-btn {
+            position: absolute;
+            top: 30px; right: 50px;
+            font-size: 2.5rem;
+            color: #fdbb2d;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-            .railway-types {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .close-btn:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .note {
+            text-align: center;
+            color: #aaa;
+            margin-top: 20px;
+            font-size: 1rem;
         }
 
         @media (max-width: 768px) {
-            header {
-                height: 80vh;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .container {
-                padding: 50px 20px;
-            }
-
-            .description, .discord-section {
-                padding: 30px;
-            }
-
-            h2 {
-                font-size: 1.6rem;
-            }
-
-            .railway-types {
-                grid-template-columns: 1fr;
-            }
-
-            p {
-                font-size: 1rem;
-            }
+            .main-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -377,49 +174,69 @@
             <section class="description">
                 <h2>景明鉄道ワールドについて</h2>
                 <p>景明鉄道ワールドは、鉄道ファンのためのコミュニティです。新幹線、地下鉄、中央線、在来線など、さまざまな鉄道に関する情報や話題を共有しています。</p>
-                
                 <p>まだ始めたばかりであまりできていないので、ご協力いただける方を募集しています。一緒に鉄道の魅力を発信し、充実したコミュニティを作り上げましょう！</p>
                 
                 <div class="railway-types">
-                    <div class="railway-type">
+                    <div class="railway-type" onclick="showImage('image/images1.jpg')">
                         <h3>新幹線</h3>
                         <p>高速鉄道の魅力</p>
                     </div>
-                    <div class="railway-type">
+                    <div class="railway-type" onclick="showImage('image/image2.jpg')">
                         <h3>地下鉄</h3>
                         <p>都市の交通網</p>
                     </div>
-                    <div class="railway-type">
+                    <div class="railway-type" onclick="showImage('image/image3.jpg')">
                         <h3>中央線</h3>
                         <p>主要路線情報</p>
                     </div>
-                    <div class="railway-type">
+                    <div class="railway-type" onclick="showImage('image/image3.jpg')">
                         <h3>在来線</h3>
                         <p>地域の鉄道</p>
                     </div>
                 </div>
+                <p class="note">※すべて地上で撮影しています。</p>
             </section>
-            
+
             <section class="discord-section">
                 <h2>Discordコミュニティに参加</h2>
                 <p>景明鉄道ワールドのDiscordコミュニティでは、鉄道に関する情報交換や雑談を楽しめます。鉄道ファンなら入っていて損はないはず！</p>
-                
                 <a href="https://discord.gg/YKP3YPazy7" class="discord-link" target="_blank">Discordに参加する</a>
-                
                 <p>ブラウザで上記リンクを検索・入力してお入りください。</p>
-                
                 <div class="discord-widget">
-                    <iframe src="https://discord.com/widget?id=1421466684430090242&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    <iframe src="https://discord.com/widget?id=1421466684430090242&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
                 </div>
             </section>
         </div>
     </div>
-    
+
     <footer>
         <p>&copy; <span id="year"></span> 景明鉄道ワールド</p>
     </footer>
+
+    <!-- モーダル -->
+    <div id="imageModal" class="image-modal">
+        <span class="close-btn" onclick="closeImage()">&times;</span>
+        <img id="modalImage" src="" alt="表示画像">
+    </div>
+
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
+
+        function showImage(src) {
+            const modal = document.getElementById("imageModal");
+            const img = document.getElementById("modalImage");
+            img.src = src;
+            modal.style.display = "flex";
+        }
+
+        function closeImage() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        window.addEventListener("click", function(e) {
+            const modal = document.getElementById("imageModal");
+            if (e.target === modal) modal.style.display = "none";
+        });
     </script>
 </body>
 </html>
