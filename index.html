@@ -6,176 +6,360 @@
     <title>景明鉄道ワールド - 鉄道ファンのコミュニティ</title>
  <link rel="icon" href="icon.png" type="image/png">
 
-
     <style>
-        /* 全体のスタイル */
+        @font-face {
+            font-family: 'KeifontM';
+            src: url('keifont.ttf') format('truetype');
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'メイリオ', 'Meiryo', sans-serif;
         }
-        
+
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'KeifontM', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* ヘッダー部分 */
+
+        /* ヘッダー */
         header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: white;
-            padding: 40px 20px;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(253, 187, 45, 0.15) 0%, transparent 70%);
+            top: -300px;
+            left: -300px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, transparent 70%);
+            bottom: -200px;
+            right: -200px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fdbb2d, #b21f1f, #5865F2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(253, 187, 45, 0.3);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+        }
+
+        /* コンテナ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .description {
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(253, 187, 45, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
         }
-        
-        header::before {
-            content: "";
+
+        .description::before {
+            content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(253, 187, 45, 0.1), transparent);
+            transition: left 0.5s;
         }
-        
-        .header-content {
+
+        .description:hover {
+            border-color: rgba(253, 187, 45, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(253, 187, 45, 0.2);
+        }
+
+        .description:hover::before {
+            left: 100%;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #fdbb2d;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #fdbb2d, transparent);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 25px;
+        }
+
+        .railway-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .railway-type {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(178, 31, 31, 0.1));
+            border: 1px solid rgba(253, 187, 45, 0.3);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .railway-type::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(253, 187, 45, 0.1);
+            transition: left 0.5s;
+        }
+
+        .railway-type:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: rgba(253, 187, 45, 0.8);
+            box-shadow: 0 15px 40px rgba(253, 187, 45, 0.25);
+        }
+
+        .railway-type:hover::before {
+            left: 100%;
+        }
+
+        .railway-type h3 {
+            font-size: 1.4rem;
+            color: #fdbb2d;
+            margin-bottom: 10px;
             position: relative;
             z-index: 1;
         }
-        
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+        .railway-type p {
+            font-size: 0.95rem;
+            color: #999;
+            margin: 0;
+            position: relative;
+            z-index: 1;
         }
-        
-        .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            font-weight: 300;
-        }
-        
-        /* メインコンテンツ */
-        .main-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .description {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
+
+        /* Discordセクション */
         .discord-section {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.08), rgba(178, 31, 31, 0.08));
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
             text-align: center;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
         }
-        
-        h2 {
-            color: #1a2a6c;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #fdbb2d;
+
+        .discord-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
-        
-        p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+
+        .discord-section:hover {
+            border-color: rgba(88, 101, 242, 0.6);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(88, 101, 242, 0.2);
         }
-        
-        .railway-types {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 25px 0;
-        }
-        
-        .railway-type {
-            background: #f0f8ff;
-            padding: 15px;
-            border-radius: 10px;
-            flex: 1;
-            min-width: 140px;
-            text-align: center;
-            border-left: 4px solid #1a2a6c;
-            transition: transform 0.3s;
-        }
-        
-        .railway-type:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
+
         .discord-link {
             display: inline-block;
-            background: #5865F2;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
             color: white;
-            padding: 15px 30px;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin: 20px 0;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(88, 101, 242, 0.3);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin: 30px 0;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .discord-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s;
+        }
+
         .discord-link:hover {
-            background: #4752c4;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(88, 101, 242, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
         }
-        
+
+        .discord-link:hover::before {
+            left: 100%;
+        }
+
         .discord-widget {
-            margin-top: 30px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            filter: brightness(0.85) contrast(1.1);
         }
-        
+
         /* フッター */
         footer {
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 40px;
-            background: #1a2a6c;
-            color: white;
-            border-radius: 20px 20px 0 0;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, rgba(26, 42, 108, 0.5), rgba(15, 15, 30, 0.8));
+            border-top: 1px solid rgba(253, 187, 45, 0.2);
+            color: #888;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 80px;
         }
-        
-        /* レスポンシブデザイン */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
+
+        /* レスポンシブ */
+        @media (max-width: 1024px) {
             .main-content {
-                flex-direction: column;
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .railway-types {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 80vh;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 50px 20px;
+            }
+
+            .description, .discord-section {
+                padding: 30px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .railway-types {
+                grid-template-columns: 1fr;
+            }
+
+            p {
+                font-size: 1rem;
             }
         }
     </style>
