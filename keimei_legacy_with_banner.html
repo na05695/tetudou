@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>景明鉄道ワールド - 鉄道ファンのコミュニティ</title>
+    <link rel="icon" href="icon.png" type="image/png">
+
+    <style>
+        @font-face {
+            font-family: 'KeifontM';
+            src: url('keifont.ttf') format('truetype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'KeifontM', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        header {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(253, 187, 45, 0.15) 0%, transparent 70%);
+            top: -300px;
+            left: -300px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, transparent 70%);
+            bottom: -200px;
+            right: -200px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fdbb2d, #b21f1f, #5865F2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(253, 187, 45, 0.3);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+        }
+
+        /* コンテナ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .description {
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(253, 187, 45, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .description:hover {
+            border-color: rgba(253, 187, 45, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(253, 187, 45, 0.2);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #fdbb2d;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #fdbb2d, transparent);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 25px;
+        }
+
+        .railway-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .railway-type {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(178, 31, 31, 0.1));
+            border: 1px solid rgba(253, 187, 45, 0.3);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .railway-type:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: rgba(253, 187, 45, 0.8);
+            box-shadow: 0 15px 40px rgba(253, 187, 45, 0.25);
+        }
+
+        .railway-type h3 {
+            font-size: 1.4rem;
+            color: #fdbb2d;
+            margin-bottom: 10px;
+        }
+
+        .railway-type p {
+            font-size: 0.95rem;
+            color: #999;
+            margin: 0;
+        }
+
+        /* Discordセクション */
+        .discord-section {
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.08), rgba(178, 31, 31, 0.08));
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discord-link {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin: 30px 0;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+        }
+
+        .discord-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.5);
+        }
+
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(253, 187, 45, 0.3);
+        }
+
+        .modal p {
+            color: #ccc;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+            color: #fdbb2d;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, rgba(26, 42, 108, 0.5), rgba(15, 15, 30, 0.8));
+            border-top: 1px solid rgba(253, 187, 45, 0.2);
+            color: #888;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 80px;
+        }
+
+        /* 新サイトへの常時表示のお知らせ */
+        .new-site-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 12px 20px;
+            background: linear-gradient(100deg, #292013, #614010 55%, #2d214d);
+            border-bottom: 2px solid #fdbb2d;
+            box-shadow: 0 5px 22px rgba(0,0,0,.55);
+            color: #fff;
+            font-family: 'KeifontM', sans-serif;
+            text-align: center;
+        }
+        .new-site-banner .banner-text {
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+        .new-site-banner .recommended {
+            color: #ffdc78;
+        }
+        .new-site-banner .new-site-link {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 30px;
+            background: #fdbb2d;
+            color: #17110c;
+            font-size: .95rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform .2s, background .2s;
+            white-space: nowrap;
+        }
+        .new-site-banner .new-site-link:hover,
+        .new-site-banner .new-site-link:focus-visible {
+            background: #ffe094;
+            transform: translateY(-2px);
+        }
+        /* 元のページを固定バナーの下から表示 */
+        body { padding-top: var(--banner-height, 78px); }
+        header { height: calc(100vh - var(--banner-height, 78px)); min-height: 420px; }
+        @media (max-width: 600px) {
+            .new-site-banner { gap: 7px; padding: 10px 12px; }
+            .new-site-banner .banner-text { font-size: .86rem; }
+            .new-site-banner .new-site-link { padding: 8px 16px; font-size: .85rem; }
+            h1 { font-size: clamp(2.3rem, 11vw, 5rem); }
+            .subtitle { font-size: 1.1rem; }
+            .container { padding: 40px 16px; }
+            .main-content { grid-template-columns: 1fr; gap: 24px; }
+            .description, .discord-section { padding: 25px 18px; }
+            .discord-widget iframe { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 旧サイトを残し、新サイトをおすすめする固定案内 -->
+    <aside class="new-site-banner" id="newSiteBanner" aria-label="新サイトのお知らせ">
+        <span class="banner-text">🚄 景明鉄道ワールドの<strong class="recommended">新サイトがおすすめ！</strong> こちらの旧サイトも引き続き閲覧できます。</span>
+        <a class="new-site-link" href="https://sites.google.com/view/keimeitetudou/" target="_blank" rel="noopener noreferrer">新しいサイトを見る →</a>
+    </aside>
+
+    <header>
+        <div class="header-content">
+            <h1>景明鉄道ワールド</h1>
+            <p class="subtitle">新幹線・地下鉄・中央線・在来線の鉄道コミュニティ</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <section class="description">
+                <h2>景明鉄道ワールドについて</h2>
+                <p>景明鉄道ワールドは、鉄道ファンのためのコミュニティです。新幹線、地下鉄、中央線、在来線など、さまざまな鉄道に関する情報や話題を共有しています。</p>
+                <p>まだ始めたばかりであまりできていないので、ご協力いただける方を募集しています。一緒に鉄道の魅力を発信し、充実したコミュニティを作り上げましょう！</p>
+
+                <div class="railway-types">
+                    <div class="railway-type" data-image="image/images1.jpg">
+                        <h3>新幹線</h3>
+                        <p>高速鉄道の魅力</p>
+                    </div>
+                    <div class="railway-type" data-image="image/image2.jpg">
+                        <h3>地下鉄</h3>
+                        <p>都市の交通網</p>
+                    </div>
+                    <div class="railway-type" data-image="image/image3.jpg">
+                        <h3>中央線</h3>
+                        <p>主要路線情報</p>
+                    </div>
+                    <div class="railway-type" data-image="image/image3.jpg">
+                        <h3>在来線</h3>
+                        <p>地域の鉄道</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="discord-section">
+                <h2>Discordコミュニティに参加</h2>
+                <p>景明鉄道ワールドのDiscordコミュニティでは、鉄道に関する情報交換や雑談を楽しめます。鉄道ファンなら入っていて損はないはず！</p>
+                <a href="https://discord.gg/YKP3YPazy7" class="discord-link" target="_blank">Discordに参加する</a>
+                <p>ブラウザで上記リンクを検索・入力してお入りください。</p>
+                <div class="discord-widget">
+                    <iframe src="https://discord.com/widget?id=1421466684430090242&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- モーダル -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <img id="modalImage" src="" alt="">
+        <p>※すべて地上で撮影しています。</p>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="year"></span> 景明鉄道ワールド</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        const closeModal = document.getElementById("closeModal");
+
+        document.querySelectorAll(".railway-type").forEach(type => {
+            type.addEventListener("click", () => {
+                const imgSrc = type.getAttribute("data-image");
+                modalImage.src = imgSrc;
+                modal.style.display = "flex";
+            });
+        });
+
+        closeModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        modal.addEventListener("click", e => {
+            if (e.target === modal) modal.style.display = "none";
+        });
+
+        // 折り返しでバナーの高さが変わっても本文に重ならないようにする
+        const newSiteBanner = document.getElementById('newSiteBanner');
+        function updateBannerHeight() {
+            document.documentElement.style.setProperty('--banner-height', newSiteBanner.offsetHeight + 'px');
+        }
+        updateBannerHeight();
+        window.addEventListener('resize', updateBannerHeight);
+        if ('ResizeObserver' in window) new ResizeObserver(updateBannerHeight).observe(newSiteBanner);
+    </script>
+</body>
+</html>
